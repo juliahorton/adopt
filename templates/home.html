@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col col-6 text-center">
+        <h1 class="display-2">Adopt a Pet</h1>
+        <a href="/add" class="btn btn-info" >ADD PET</a>
+    </div>
+
+<div class="row justify-content-center">
+
+    {% for pet in pets %}
+
+    <div class="card mt-3 p-1 mx-2" style="width: 12rem;">
+        {% if pet.photo_url %}
+        <img src={{pet.photo_url}} class="card-img-top" width=150 height=250 alt={{pet.species}}>
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{pet.name}}
+          </h5>
+          {% if pet.available %}
+          <p class="card-text">Available</p>
+          {% else %}
+          <p class="card-text">Not available</p>
+          {% endif %}
+          <a href="/{{pet.id}}" class="btn btn-info">View details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}
